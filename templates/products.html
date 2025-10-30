@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test2 Dropshipping Store - Products</title>
+</head>
+<body>
+    <h1>Recommended Products</h1>
+    {% if products.get('products') %}
+        <ul>
+            {% for product in products.get('products') %}
+                <li>{{ product.name }} - ${{ product.price }}</li>
+            {% endfor %}
+        </ul>
+    {% elif products.get('error') %}
+        <p>Error: {{ products.get('error') }}</p>
+        <p>Details: {{ products.get('details') }}</p>
+    {% else %}
+        <p>No products found.</p>
+    {% endif %}
+    <a href="/">Back to Home</a>
+</body>
+</html>
