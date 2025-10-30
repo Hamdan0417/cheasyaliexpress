@@ -11,7 +11,7 @@ app = Flask(__name__)
 # Replace with your actual App Key and App Secret
 APP_KEY = os.getenv('APP_KEY')
 APP_SECRET = os.getenv('APP_SECRET')
-CALLBACK_URL = 'http://127.0.0.1:5000/callback'  # Make sure this matches your app settings
+CALLBACK_URL = 'https://127.0.0.1:5000/callback'  # Make sure this matches your app settings
 
 def get_recommended_products(access_token):
     # This is a placeholder function.
@@ -79,4 +79,5 @@ def callback():
         return f'Error getting token: {token_response.text}'
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    context = ('certs/cert.pem', 'certs/key.pem')
+    app.run(debug=True, ssl_context=context)

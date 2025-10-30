@@ -3,3 +3,6 @@
 
 # Log files
 *.log
+
+# SSL certificates
+certs/
