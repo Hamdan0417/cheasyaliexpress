@@ -2,18 +2,23 @@
 <html>
 <head>
     <title>Test2 Dropshipping Store - Products</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <h1>Recommended Products</h1>
-    {% if products.get('products') %}
-        <ul>
-            {% for product in products.get('products') %}
-                <li>{{ product.name }} - ${{ product.price }}</li>
+    {% if products and products.products %}
+        <div class="product-grid">
+            {% for product in products.products.product %}
+                <div class="product-card">
+                    <img src="{{ product.product_main_image_url }}" alt="{{ product.product_title }}">
+                    <h3>{{ product.product_title }}</h3>
+                    <p>{{ product.target_sale_price }} {{ product.target_sale_price_currency }}</p>
+                </div>
             {% endfor %}
-        </ul>
-    {% elif products.get('error') %}
-        <p>Error: {{ products.get('error') }}</p>
-        <p>Details: {{ products.get('details') }}</p>
+        </div>
+    {% elif products.error %}
+        <p>Error: {{ products.error }}</p>
+        <p>Details: {{ products.details }}</p>
     {% else %}
         <p>No products found.</p>
     {% endif %}
